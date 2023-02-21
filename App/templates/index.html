@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nigra and Schizophrenia</title>
+
+    <style>
+        body {
+            background-color: #041C3A;
+            color: #D6B534;
+        }
+
+        #title {
+            /* 페이지 제목 스타일 */
+            font-size: 250%;
+            font-style: italic;
+            text-align: center;
+            margin-top: -1%;
+            animation-name: neon;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+
+        #explain {
+            font-size: 150%;
+            text-align: center;
+            margin-top: 3%;
+        }
+
+        .formType {
+            /* 두 테스트 종류를 담은 표의 스타일*/
+            margin: auto;
+            width: 70%;
+            border: 4px solid #FFD966;
+            margin-top: 1%;
+            padding: 5%;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 2.5%;
+        }
+
+        button {
+            margin-top: 5px;
+            color: indianred;
+            background-color: #041C3A;
+            height: 90%;
+            border-style: solid;
+            border-width: 4px;
+            border-color: indianred;
+            background-size: cover;
+            text-align: center;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 10px 10px;
+        }
+
+        #cont {
+            /* 큰 틀이 될 테이블의 스타일 */
+            width: 100%;
+            height: 100%;
+            margin: auto;
+        }
+
+        #box1 {
+            /* 페이지 제목을 담을 셀의 스타일 */
+            height: 100%;
+            width: 20%;
+            padding: 3%;
+        }
+
+        #box2 {
+            margin: auto;
+            text-align: center;
+            height: 100%;
+            width: 10%;
+            border-left-width: 5px;
+            border-left-color: #FFD966;
+            border-left-style: solid;
+            padding: 1%;
+        }
+
+        iframe {
+            border-style: hidden;
+        }
+
+        #result {
+            text-align: center;
+            height: 100%;
+            width: 30%;
+        }
+
+        @keyframes neon {
+
+            /* 웹사이트 이름에 쓰일 애니메이션 (깜빡거리는 네온사인 효과) */
+            from {
+                text-shadow: 0px 0px 10px dodgerblue, 0 0 2px darkblue, 0px 0px 10px dodgerblue;
+            }
+
+            to {
+                text-shadow: 0px 0px 40px dodgerblue, 0 0 10px darkblue, 0px 0px 40px dodgerblue;
+            }
+        }
+
+        button:hover {
+            /* 링크에 마우스 올라가면 적용될 스타일 (네온사인 같은 그림자) */
+            box-shadow: 0px 0px 40px indianred, 0 0 10px darkblue, 0px 0px 40px dodgerblue;
+        }
+
+        #goHistory {
+            width: 6%;
+            background-color: #010e1f;
+            position: fixed;
+            bottom: 3%;
+            right: 1%;
+            text-decoration: none;
+            /* 링크 밑줄 없애기 */
+            color: #FFD966;
+            text-align: center;
+            padding: 5px;
+            border-radius: 10px 10px;
+        }
+
+        #goHistory:hover {
+            box-shadow: 0px 0px 40px dodgerblue, 0 0 10px darkblue, 0px 0px 40px dodgerblue;
+        }
+
+        #goHistory div {
+            margin: auto;
+            margin-top: 15px;
+            width: 0px;
+            height: 0px;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-left: 40px solid none;
+            border-right: 40px solid #FFD966;
+        }
+        
+        #saved{
+            text-align: center;
+            width: 15%;
+            margin:auto;
+            width: 20%;
+            background-color: #010e1f;
+            position: fixed;
+            bottom: 3%;
+            right: 10%;
+            color: #FFD966;
+            padding: 5px;
+            border-radius: 10px 10px;
+        }
+        #name {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: indianred;
+            background-color: #041C3A;
+            height: 80%;
+            border-style: solid;
+            border-width: 2px;
+            border-color: indianred;
+            background-size: cover;
+            text-align: center;
+            font-size: 15px;
+            padding: 1px;
+            border-radius: 5px 5px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <table id="cont">
+        <tbody>
+            <tr>
+                <td id="box1">
+                    <div id="title"><strong>Correlation between Substantia Nigra and Schizophrenia</strong></div>
+                    <div id="explain">This space provides information about Schizophrenia based on your nifti file and well-trained AI model.<br><span style="font-size: 70%;">Uploaded files will be saved your account server. Segmentation result will be saved in your "Downloads" folder automatically.</span></div>
+                    <br>
+                    <p>if you have both MRI file and Segmentation file, Use this form.</p>
+                    <div class="formType">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form1.as_p }}
+                            <button type="submit">Upload</button>
+                        </form>
+                    </div>
+
+                    <p>if you have only MRI file, Use this form.</p>
+                    <div class="formType">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form2.as_p }}
+                            <button type="submit">Upload</button>
+                        </form>
+                    </div>
+                </td>
+
+                <td id="box2">
+                    <iframe src="results.html" width=100% height=100%></iframe>
+                </td>
+            </tr>
+        </tbody>
+    </table>}
+
+    <a id="goHistory" href="imgList.html">
+        <div></div>
+        <br>
+        Your History
+    </a>
+</body>
+
+</html>
