@@ -7,8 +7,8 @@ app_name = 'App'
 urlpatterns = [
     # two paths: with or without given image
     path('', views.index, name='index'),
-    path('imgList.html/',views.ListFunc),
-    path('results.html/',views.result_info),
+    path('App/imgList.html',views.ListFunc, name='imgList'),
+    path('App/results.html',views.result_info, name='results'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

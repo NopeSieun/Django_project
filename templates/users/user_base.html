@@ -1,0 +1,29 @@
+<!-- templates/user_base.html -->
+
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% block header %}
+    <!-- header 삽입 부분 -->
+    {% endblock %}
+</head>
+
+<body>
+    {% block contents %}
+    <!-- body 삽입 부분 -->
+    {% endblock %}
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <script>
+        alert("{{ message.message }}") <!-- message alert script -->
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+</body>
+
+</html>

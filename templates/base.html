@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Required mera tags -->
+  <meta charset="UTF-8">
+  <meta name="viewpoint" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <title>Nigra and Schizophrenia</title>
+</head>
+<style>
+          body {
+            background-color: #041C3A;
+            color: #D6B534;
+        }
+</style>
+<body>
+<!-- 네비게이션바 -->
+{% include "navbar.html" %}
+<!-- 기본 템플릿 안에 삽입될 내용 start -->
+{% block content %}
+{% endblock %}
+<!-- 기본 템플릿 안에 삽입될 내용 END -->
+<!-- Bootstrap JS -->
+<script src="{% static 'bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -16,6 +16,7 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +30,7 @@ SECRET_KEY = 'django-insecure-*17u74f_v&q&iyg77hrbk9rg1&j1#z8es4m4x*o8a#+d51xy6m
 DEBUG = True
 # DEBUG = True
 
-ALLOWED_HOSTS = ['203.253.71.142','127.0.0.1','.pythonanywhere.com','203.253.71.149']#'203.253.71.149', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['203.253.71.142', '127.0.0.1']#'203.253.71.149', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'App.apps.AppConfig', # 앱
+    'users',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +62,7 @@ ROOT_URLCONF = 'Project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR),],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,7 +84,7 @@ WSGI_APPLICATION = 'Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': BASE_DIR / 'db.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
         #'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
     }
@@ -124,11 +127,14 @@ USE_TZ = True
 
 #STATIC_URL = 'static/'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 # path to where static files are copied for deployment (eg, for heroku)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #STATIC_ROOT = os.path.join(BASE_DIR, 'www_dir', 'static')
 # location of static files in local development: https://learndjango.com/tutorials/django-favicon-tutorial
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -136,4 +142,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#settings.py
+
+LOGIN_URL = '/users/login/'
+
+#로그인 성공 시 자동으로 이동할 URL
+LOGIN_REDIRECT_URL = '/'
+
+# 로그아웃시 이동하는 URL
+LOGOUT_REDIRECT_URL = '/users/login/'
+
+#AUTH_USER_MODEL = "App.User"       # 커스텀 인증 모델
+
+#세션만료 시간
+#SESSION_COOKIE_AGE = 60 * 60
 

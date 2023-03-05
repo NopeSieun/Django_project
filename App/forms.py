@@ -11,3 +11,4 @@ class UploadFileForm(forms.Form):
 class UploadFileForm2(forms.Form):
     #title = forms.CharField(max_length=50)
     file2 = forms.FileField()
+
