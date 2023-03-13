@@ -300,7 +300,9 @@ def index(request):
                     val_masks_ = R0(np.expand_dims(val_masks_, 0))
                     val_outputs_ = R0(np.expand_dims(val_outputs_, 0))
 
-                    dpath = "C:/Users/user/Downloads"
+                    os.mkdir("C:/your_nifti")
+                    #dpath = "C:/Users/user/Downloads"
+                    dpath = "C:/your_nifti"
                     tmp = nib.Nifti1Image(100 * val_outputs_[0].cpu().numpy(),
                                           batch['image1_meta_dict']['affine'][0].numpy())
                     nib.save(tmp, os.path.join(dpath, 'your_nii_prob_SN.nii.gz').replace("\\","/"))
